@@ -1,0 +1,35 @@
+<div class="panel hub">
+
+  <h2>Hub</h2>
+
+  <div style="display: flex; flex-direction: row;">
+    <button ng-disabled="ctr.disableButtons" ng-click="ctr.openSendLifeProffDialog()">Soy Juli</button>
+    <button ng-disabled="ctr.disableButtons" ng-click="ctr.requestLifeProff()">NO soy Juli <b>(Refrescar)</b></button>
+  </div>
+
+  <div style="height: 10px;"></div>
+  <div style="display: flex; flex-direction: column; width: 300px;">
+    <span ng-show="ctr.lastProvidedLifeProff.time">Última prueba de vida: <strong>{{(ctr.lastProvidedLifeProff.time*1000) | date:'yyyy-MM-dd HH:mm:ss'}}</strong></span>
+    <i  ng-show="ctr.lastLifeProffRequestTime" style="font-size: small;">Última refrescada {{(ctr.lastLifeProffRequestTime*1000) | date:'yyyy-MM-dd HH:mm:ss'}}</i>
+  </div>
+
+  <div  style="display: flex; flex-direction: column;">
+    <h3>Foticos 📷🆕</h3>
+    <small>Click sobre la foto para ver otra foto al azar</small>
+    <img ng-init="currentImageFilename = ctr.getAnImageFilename()" ng-src="/presentation/web/assets/images/{{currentImageFilename}}" ng-click="currentImageFilename = ctr.getAnImageFilename()" width="300px" style="vertical-align:middle; border-radius: 40px;" />
+  </div>
+
+  <pre style="font-size: small;">client-id: {{ctr.session.id| json}}</pre>
+
+
+  <dialog id="send-life-proff-dialog">
+    <div class="section">
+      <div style="display:flex; flex-direction: row;  align-items: center;">
+        <input type="text" placeholder="Superpass" ng-model="ctr.juPass" style="flex-grow: 100;">
+        <span class="flex-space-filler"></span>
+        <button class="materialButton raised colorButton" ng-click="ctr.hideSendLifeProffDialog(); ctr.provideLifeProff();">Apretar para dar prueba 🧾💚</button>
+      </div>
+    </div>
+  </dialog>
+
+</div>
